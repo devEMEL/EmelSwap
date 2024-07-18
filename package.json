@@ -1,0 +1,45 @@
+{
+  "name": "se-2",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/hardhat",
+      "packages/nextjs"
+    ]
+  },
+  "scripts": {
+    "account": "yarn workspace @se-2/hardhat account",
+    "chain": "yarn workspace @se-2/hardhat chain",
+    "fork": "yarn workspace @se-2/hardhat fork",
+    "deploy": "yarn workspace @se-2/hardhat deploy",
+    "verify": "yarn workspace @se-2/hardhat verify",
+    "hardhat-verify": "yarn workspace @se-2/hardhat hardhat-verify",
+    "compile": "yarn workspace @se-2/hardhat compile",
+    "generate": "yarn workspace @se-2/hardhat generate",
+    "flatten": "yarn workspace @se-2/hardhat flatten",
+    "hardhat:lint": "yarn workspace @se-2/hardhat lint",
+    "hardhat:lint-staged": "yarn workspace @se-2/hardhat lint-staged",
+    "hardhat:format": "yarn workspace @se-2/hardhat format",
+    "hardhat:test": "yarn workspace @se-2/hardhat test",
+    "test": "yarn hardhat:test",
+    "format": "yarn next:format && yarn hardhat:format",
+    "start": "yarn workspace @se-2/nextjs dev",
+    "next:lint": "yarn workspace @se-2/nextjs lint",
+    "next:format": "yarn workspace @se-2/nextjs format",
+    "next:check-types": "yarn workspace @se-2/nextjs check-types",
+    "next:build": "yarn workspace @se-2/nextjs build",
+    "postinstall": "husky install",
+    "precommit": "lint-staged",
+    "vercel": "yarn workspace @se-2/nextjs vercel"
+  },
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "dependencies": {
+    "@analog-labs/timegraph-js": "^0.1.1",
+    "@polkadot/keyring": "^12.6.2"
+  }
+}

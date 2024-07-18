@@ -1,0 +1,116 @@
+{
+  "address": "0x123A0AAB7bB9Bf32Cce685c3C5948a9063635e10",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "gateway",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "number",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint128",
+          "name": "",
+          "type": "uint128"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "onGmpReceived",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x0c60bee1a9368d4d07662f1b49e7d1d645fe6eb341067a912bbe84c7334ebb19",
+  "receipt": {
+    "to": null,
+    "from": "0x5b240A6F86a180C795ab1328F2F3567d113DEF26",
+    "contractAddress": "0x123A0AAB7bB9Bf32Cce685c3C5948a9063635e10",
+    "transactionIndex": 48,
+    "gasUsed": "165429",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x50ab4196c2ad1bb95ab657ab433ed3b69ade7f0872e4ca65e829b31fbb9bc1fe",
+    "transactionHash": "0x0c60bee1a9368d4d07662f1b49e7d1d645fe6eb341067a912bbe84c7334ebb19",
+    "logs": [],
+    "blockNumber": 6302928,
+    "cumulativeGasUsed": "10519251",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x7702eD777B5d6259483baAD0FE8b9083eF937E2A"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "840651cf9c0f8af6d56172b56b13b7ec",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"gateway\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"number\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"uint128\",\"name\":\"\",\"type\":\"uint128\"},{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"onGmpReceived\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/analog/Counter.sol\":\"Counter\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/analog/Counter.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity ^0.8.0;\\n\\ninterface IGmpReceiver {\\n    function onGmpReceived(bytes32 id, uint128 network, bytes32 source, bytes calldata payload)\\n        external\\n        payable\\n        returns (bytes32);\\n}\\n\\ncontract Counter is IGmpReceiver {\\n    address private immutable _gateway;\\n    uint256 public number;\\n\\n    // example gw 0x7702eD777B5d6259483baAD0FE8b9083eF937E2A\\n    constructor(address gateway) {\\n        _gateway = gateway;\\n    }\\n\\n    function onGmpReceived(bytes32, uint128, bytes32, bytes calldata) external payable returns (bytes32) {\\n        require(msg.sender == _gateway, \\\"unauthorized\\\");\\n        number++;\\n        return bytes32(number);\\n    }\\n}\",\"keccak256\":\"0x4b9f4064f3b3ba30315361208cf2e772bbd05ab63d524334f4b5fb86909b3b46\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60a060405234801561001057600080fd5b5060405161028938038061028983398101604081905261002f91610040565b6001600160a01b0316608052610070565b60006020828403121561005257600080fd5b81516001600160a01b038116811461006957600080fd5b9392505050565b6080516101ff61008a6000396000607601526101ff6000f3fe6080604052600436106100295760003560e01c8063019009371461002e5780638381f58a14610053575b600080fd5b61004161003c3660046100f7565b610069565b60405190815260200160405180910390f35b34801561005f57600080fd5b5061004160005481565b6000336001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016146100d65760405162461bcd60e51b815260206004820152600c60248201526b1d5b985d5d1a1bdc9a5e995960a21b604482015260640160405180910390fd5b6000805490806100e5836101a2565b90915550506000549695505050505050565b60008060008060006080868803121561010f57600080fd5b8535945060208601356fffffffffffffffffffffffffffffffff8116811461013657600080fd5b935060408601359250606086013567ffffffffffffffff8082111561015a57600080fd5b818801915088601f83011261016e57600080fd5b81358181111561017d57600080fd5b89602082850101111561018f57600080fd5b9699959850939650602001949392505050565b6000600182016101c257634e487b7160e01b600052601160045260246000fd5b506001019056fea26469706673582212206121dde8b6949dd985c3e428a69593f1b59812957627e34088165351f1ef7e3064736f6c63430008110033",
+  "deployedBytecode": "0x6080604052600436106100295760003560e01c8063019009371461002e5780638381f58a14610053575b600080fd5b61004161003c3660046100f7565b610069565b60405190815260200160405180910390f35b34801561005f57600080fd5b5061004160005481565b6000336001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016146100d65760405162461bcd60e51b815260206004820152600c60248201526b1d5b985d5d1a1bdc9a5e995960a21b604482015260640160405180910390fd5b6000805490806100e5836101a2565b90915550506000549695505050505050565b60008060008060006080868803121561010f57600080fd5b8535945060208601356fffffffffffffffffffffffffffffffff8116811461013657600080fd5b935060408601359250606086013567ffffffffffffffff8082111561015a57600080fd5b818801915088601f83011261016e57600080fd5b81358181111561017d57600080fd5b89602082850101111561018f57600080fd5b9699959850939650602001949392505050565b6000600182016101c257634e487b7160e01b600052601160045260246000fd5b506001019056fea26469706673582212206121dde8b6949dd985c3e428a69593f1b59812957627e34088165351f1ef7e3064736f6c63430008110033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 21,
+        "contract": "contracts/analog/Counter.sol:Counter",
+        "label": "number",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

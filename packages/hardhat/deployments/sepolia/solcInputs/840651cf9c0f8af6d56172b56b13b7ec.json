@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/analog/Counter.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.0;\n\ninterface IGmpReceiver {\n    function onGmpReceived(bytes32 id, uint128 network, bytes32 source, bytes calldata payload)\n        external\n        payable\n        returns (bytes32);\n}\n\ncontract Counter is IGmpReceiver {\n    address private immutable _gateway;\n    uint256 public number;\n\n    // example gw 0x7702eD777B5d6259483baAD0FE8b9083eF937E2A\n    constructor(address gateway) {\n        _gateway = gateway;\n    }\n\n    function onGmpReceived(bytes32, uint128, bytes32, bytes calldata) external payable returns (bytes32) {\n        require(msg.sender == _gateway, \"unauthorized\");\n        number++;\n        return bytes32(number);\n    }\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
